@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Solar System Visualization</title>
+        <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/gh/c-frame/aframe-particle-system-component@a5a8449/dist/aframe-particle-system-component.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/aframe-simple-sun-sky@^1.2.2/simple-sun-sky.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@d5f3f8/dist/aframe-extras.min.js"></script>
+    </head>
+    <body>
+        <a-scene>
+            <!-- Celestial Bodies -->
+            <a-entity id="sphere" geometry="primitive: sphere" material="color:
+                #e3bd5d; shader: flat" position="0 0.15 0" light="type: point;
+                intensity: 2"></a-entity>
+            <a-sphere id="bluesphere" class="clickable" color="#b3451d"></a-sphere>
+            <a-sphere id="venus" class="clickable" color="#c97738"></a-sphere>
+            <a-sphere id="earth" class="clickable" color="#3f6d8a"></a-sphere>
+            <a-sphere id="mars" class="clickable" color="#914a3d"></a-sphere>
+            <a-sphere id="jupyter" class="clickable" color="#9c5f54"></a-sphere>
+            <a-sphere id="saturn" class="clickable" color="#a88756"></a-sphere>
+            <!-- Sky and Particles -->
+            <a-entity id="rain" particle-system="preset: rain; color: #24CAFF;
+                particleCount: 100"></a-entity>
+            <a-sky
+                src="https://plus.unsplash.com/premium_photo-1661953088879-149ce8f63974?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3VwZXJub3ZhfGVufDB8fDB8fHww"></a-sky>
+            <a-simple-sun-sky sun-position="0 0.4 0"></a-simple-sun-sky>
+
+            <!-- Lights -->
+            <a-entity light="type: ambient"></a-entity>
+            <a-entity light="type: directional"></a-entity>
+
+            <a-entity id="cameraRig" position="0 10 40" rotation="0 0 0">
+                <a-camera></a-camera>
+            </a-entity>
+
+            <!-- JavaScript to animate the celestial bodies -->
+            <script>
+            var radius = 8; 
+            var speed = 0.05;
+            var angle = 0; 
+            var movingBox = document.querySelector('#bluesphere');
+
+            function updatePosition() {
+                var x = radius * Math.cos(angle);
+                var z = radius * Math.sin(angle);
+                movingBox.setAttribute('position', {x: x, y: 0.5, z: z});
+                angle += speed;
+                requestAnimationFrame(updatePosition);
+
+                var sphere = document.querySelector('#sphere');
+                sphere.setAttribute('scale', {x: 4, y: 4, z: 4});
+                var sphere = document.querySelector('#bluesphere');
+                sphere.setAttribute('scale', {x: 1, y: 1, z: 1});
+            }
+            updatePosition();
+
+            var radius1 = 15;
+            var speed1 = 0.04;
+            var angle1 = 0;
+            var movingBox1 = document.querySelector('#venus');
+
+            function updatePosition1() {
+                var x = radius1 * Math.cos(angle1);
+                var z = radius1 * Math.sin(angle1);
+                movingBox1.setAttribute('position', {x: x, y: 0.5, z: z});
+                angle1 += speed1;
+                requestAnimationFrame(updatePosition1);
+                var sphere = document.querySelector('#venus');
+                sphere.setAttribute('scale', {x: 2, y: 2, z: 2});
+            }
+            updatePosition1();
+
+
+            var radius2 = 22;
+            var speed2 = 0.03;
+            var angle2 = 0;
+            var movingBox2 = document.querySelector('#earth');
+
+            function updatePosition2() {
+                var x = radius2 * Math.cos(angle2);
+                var z = radius2 * Math.sin(angle2);
+                movingBox2.setAttribute('position', {x: x, y: 0.5, z: z});
+                angle2 += speed2;
+                requestAnimationFrame(updatePosition2);
+                var sphere = document.querySelector('#earth');
+                sphere.setAttribute('scale', {x: 1.5, y: 1.5, z: 1.5});
+            }
+            updatePosition2();
+
+
+            var radius3 = 29;
+            var speed3 = 0.02;
+            var angle3 = 0;
+            var movingBox3 = document.querySelector('#mars');
+
+            function updatePosition3() {
+                var x = radius3 * Math.cos(angle3);
+                var z = radius3 * Math.sin(angle3);
+                movingBox3.setAttribute('position', {x: x, y: 0.5, z: z});
+                angle3 += speed3;
+                requestAnimationFrame(updatePosition3);
+                var sphere = document.querySelector('#mars');
+                sphere.setAttribute('scale', {x: 1, y: 1, z: 1});
+            }
+            updatePosition3();
+
+
+            var radius4 = 39;
+            var speed4 = 0.01;
+            var angle4 = 0;
+            var movingBox4 = document.querySelector('#jupyter');
+
+            function updatePosition4() {
+                var x = radius4 * Math.cos(angle4);
+                var z = radius4 * Math.sin(angle4);
+                movingBox4.setAttribute('position', {x: x, y: 0.5, z: z});
+                angle4 += speed4;
+                requestAnimationFrame(updatePosition4);
+                var sphere = document.querySelector('#jupyter');
+                sphere.setAttribute('scale', {x: 2.6, y: 2.6, z: 2.6});
+            }
+            updatePosition4();
+
+
+            var radius5 = 44;
+            var speed5 = 0.005;
+            var angle5 = 0;
+            var movingBox5 = document.querySelector('#saturn');
+
+            function updatePosition5() {
+                var x = radius5 * Math.cos(angle5);
+                var z = radius5 * Math.sin(angle5);
+                movingBox5.setAttribute('position', {x: x, y: 0.5, z: z});
+                angle5 += speed5;
+                requestAnimationFrame(updatePosition5);
+                var sphere = document.querySelector('#saturn');
+                sphere.setAttribute('scale', {x: 2.6, y: 2.6, z: 2.6});
+            }
+            updatePosition5();
+        </script>
+        </a-scene>
+    </body>
+</html>
